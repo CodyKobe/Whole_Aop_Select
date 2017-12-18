@@ -1,21 +1,29 @@
 import React from 'react';
 
-class Field extends React.Component{
+class Field extends React.Component {
 
-    constructor(){
-        super();
+    constructor(props) {
+        super(props);
 
-        this.state={
-
+        this.state = {
+            colorsArr: []
         }
     }
 
-    getColorsJson(){
-
-        
+    getColorsJson() {
+        const url = 'http://www.mocky.io/v2/5a37a7403200000f10eb6a2d';
+        fetch(url)
+            .then( resp => resp.json() )
+            .then(data => {
+                console.log( data );
+                this.setState({
+                    // full JSON
+                    colorsArr: data
+                })
+            });
     }
 
-    render(){
+    render() {
 
         let select = (
             <select name="colorSelectable" id="colorSelectable">
@@ -42,6 +50,10 @@ class Field extends React.Component{
 
         </div>;
     }
-}
 
+    componentDidMount() {
+        this.getColorsJson()
+    }
+
+}
 export {Field}
