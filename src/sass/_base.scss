@@ -1,3 +1,5 @@
+@import 'variables';
+
 /* tiny reset */
 * {
   box-sizing: border-box;
@@ -13,3 +15,10 @@ html, body {
  *  Components
  */
 
+body {
+  font-family: 'UbuntuMono', monospace;
+  background-color: rgba($secondary-design-color, .50);
+}
+select {
+  font-family: 'UbuntuMono', monospace;
+}
