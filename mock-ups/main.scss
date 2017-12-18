@@ -1,5 +1,5 @@
 /* tiny reset */
- * {
+* {
   box-sizing: border-box;
 }
 html, body {
@@ -9,5 +9,14 @@ html, body {
   font-size: 100%;
 }
 
-/* main */
+/**
+ *  Main mock-up
+ */
 
+body {
+  font-family: 'UbuntuMono', monospace;
+  background-color: rgba(burlywood, .50);
+}
+select {
+  font-family: 'UbuntuMono', monospace;
+}
