@@ -1,5 +1,22 @@
 import React from 'react';
 
+class Option extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+    }
+    render() {
+
+        let option = <option key={this.props.i} value={this.props.i} data-hex={this.props.colorHex}>
+            {this.props.colorName}
+        </option>;
+
+        return option;
+    }
+
+
+}
 class Field extends React.Component {
 
     constructor(props) {
@@ -14,21 +31,29 @@ class Field extends React.Component {
         const url = 'http://www.mocky.io/v2/5a37a7403200000f10eb6a2d';
         fetch(url)
             .then( resp => resp.json() )
-            .then(data => {
+            .then( data => {
                 console.log( data );
                 this.setState({
                     // full JSON
                     colorsArr: data
                 })
-            });
+            })
+            // .catch( err  => {
+            //     console.log( 'Error!', err )
+            // });
     }
 
     render() {
 
+        let options = this.state.colorsArr.map( (item, i) => {
+            return (
+                <Option key={i} value={i} data-hex={item.hex} colorName={item.name} />
+            )
+        });
+
         let select = (
             <select name="colorSelectable" id="colorSelectable">
-                <option value="1">opcje</option>
-                <option value="2">więcej opcji</option>
+                {options}
             </select>
         );
 
