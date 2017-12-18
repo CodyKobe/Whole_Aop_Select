@@ -30,7 +30,12 @@ class Field extends React.Component {
     getColorsJson() {
         const url = 'http://www.mocky.io/v2/5a37a7403200000f10eb6a2d';
         fetch(url)
-            .then( resp => resp.json() )
+            .then( resp => {
+                if( resp.ok )
+                    return resp.json();
+                else
+                    throw new Error('Network error!');
+            })
             .then( data => {
                 console.log( data );
                 this.setState({
@@ -38,9 +43,9 @@ class Field extends React.Component {
                     colorsArr: data
                 })
             })
-            // .catch( err  => {
-            //     console.log( 'Error!', err )
-            // });
+            .catch( err  => {
+                console.log( 'Authentication error!', err )
+            });
     }
 
     render() {
