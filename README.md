@@ -15,7 +15,7 @@ General styles file:
   
 General jsx:  
 ```src/js/components/app.jsx```  
-```src/js/components/about.jsx```    
+```src/js/components/field.jsx```    
   
   
 ---  

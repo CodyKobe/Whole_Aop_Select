@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Header} from './header.jsx';
-import {About}  from './about.jsx';
+import {Field}  from './field.jsx';
 import {Footer} from './footer.jsx';
 
 class App extends React.Component {
@@ -14,7 +14,7 @@ class App extends React.Component {
         return(
             <div className="global">
                 <Header />
-                <About />
+                <Field />
                 <Footer />
             </div>
         )

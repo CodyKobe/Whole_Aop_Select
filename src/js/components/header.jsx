@@ -9,7 +9,7 @@ class Header extends React.Component{
     render(){
         return(
             <header>
-                <h1>Puzzle</h1>
+                <h1>Color selecting</h1>
             </header>
         )
     }
