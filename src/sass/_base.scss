@@ -17,8 +17,14 @@ html, body {
 
 .global {
   font-family: 'UbuntuMono', monospace;
+  padding: 2rem;
+  height: 100vh;
   background-color: rgba($secondary-design-color, .50);
 }
 select {
   font-family: 'UbuntuMono', monospace;
+}
+h1{
+  margin: 0;
+  padding: 2rem 0;
 }

@@ -1,48 +1,6 @@
 import React from 'react';
 
-class Option extends React.Component {
-    constructor(props) {
-        super(props);
-
-    }
-
-    render() {
-
-        return(
-            <option key={this.props.i} value={this.props.i} data-hex={this.props.colorHex}>
-                {this.props.colorName}
-            </option>
-        )
-    }
-
-}
-//*****************************************
-
-class ColorSelect extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-        }
-    }
-
-    render() {
-
-        let colorOptions = this.props.colorsArr.map( (item, i) => {
-            return(
-                <Option key={i} value={i} data-hex={item.hex} colorName={item.name} />
-            )
-        });
-
-        return (
-            <datalist id="colorSelectable">
-                {colorOptions}
-            </datalist>
-        )
-    }
-
-}
-//***********************************
+import {ColorSelect} from './colorSelect.jsx';
 
 class Field extends React.Component {
     constructor(props) {
@@ -50,7 +8,7 @@ class Field extends React.Component {
 
         this.state = {
             colorsArr : [],
-            currentColor : 'chartreuse'
+            currentColor : 'limegreen'
         }
     }
 

@@ -12,7 +12,7 @@ class App extends React.Component {
         this.handler = this.handler.bind(this);
 
         this.state = {
-            background : 'purple'
+            background : 'limegreen'
         }
     }
 
