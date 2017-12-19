@@ -11,24 +11,22 @@ class App extends React.Component {
         // Bind the this context to the handler function
         this.handler = this.handler.bind(this);
 
-        // Set some state
         this.state = {
-            messageShown: false,
             background : 'purple'
-        };
+        }
     }
 
     // This method will be sent to the child component
     handler = (colorFromChild) => {
         this.setState({
             background : colorFromChild
-        });
+        })
     };
 
     render() {
         return(
             <div className="global"
-                 style={{backgroundColor: this.state.background}}>
+                 style={{backgroundColor: this.state.background}} >
                 <Header />
                 {/*Render the child component and set the action property with the handler as value*/}
                 <Field backgroundAction={this.handler} />

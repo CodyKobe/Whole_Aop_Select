@@ -14,10 +14,9 @@ class Option extends React.Component {
         )
     }
 }
+//*****************************************
 
-//***********************************
-
-class Field extends React.Component {
+class ColorSelect extends React.Component {
     constructor(props) {
         super(props);
 
@@ -25,6 +24,20 @@ class Field extends React.Component {
             colorsArr : [],
             currentColor : 'chartreuse'
         }
+    }
+
+    render() {
+
+        let colorOptions = this.state.colorsArr.map( (item, i) => {
+            return(
+                <Option key={i} value={i} data-hex={item.hex} colorName={item.name} />
+            )
+        });
+
+        return <datalist id="colorSelectable">
+            {colorOptions}
+        </datalist>
+
     }
 
     getColorsJson() {
@@ -48,28 +61,30 @@ class Field extends React.Component {
             });
     }
 
+    componentDidMount() {
+        this.getColorsJson()
+    }
+}
+//***********************************
+
+class Field extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            colorsArr : [],
+            currentColor : 'chartreuse'
+        }
+    }
+
     render() {
-
-        let colorOptions = this.state.colorsArr.map( (item, i) => {
-            return(
-                <Option key={i} value={i} data-hex={item.hex} colorName={item.name} />
-            )
-        });
-
-        let colorSelect = <datalist id="colorSelectable">
-                {colorOptions}
-            </datalist>;
-
-        let colorButton = (
-            <input type='button' onClick={this.setBackground} value='Accept' />
-        );
 
         return(
             <div>
                 <label htmlFor='inputWithColors'>Select color:</label>
                 <input list="colorSelectable" name="inputWithColors" id="inputWithColors" />
-                {colorSelect}
-                {colorButton}
+                <ColorSelect />
+                <input type='button' onClick={this.setBackground} value='Accept' />
 
                 <div style={{
                     backgroundColor: this.state.currentColor,
@@ -78,6 +93,7 @@ class Field extends React.Component {
                     width: '160px'
                     }}>
                 </div>
+
             </div>
         )
     }
@@ -91,15 +107,11 @@ class Field extends React.Component {
                 this.setState({
                     currentColor : '#'+item.hex
                 });
-                this.props.backgroundAction('#'+item.hex)
+                this.props.backgroundAction('#'+item.hex);
+                return 0;
             }
         })
-    };
-
-    componentDidMount() {
-        this.getColorsJson()
     }
-
 }
 
 export {Field}
