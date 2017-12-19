@@ -19,7 +19,7 @@ class App extends React.Component {
     // This method will be sent to the child component
     handler = (colorFromChild) => {
         this.setState({
-            background : colorFromChild
+            background : this.hexToRGB(colorFromChild)
         })
     };
 
@@ -34,6 +34,16 @@ class App extends React.Component {
             </div>
         )
     }
+
+    hexToRGB(hex) {
+
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+
+        return `rgba(${r}, ${g}, ${b}, .5)`;
+    }
+
 }
 
 export {App}

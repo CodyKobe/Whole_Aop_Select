@@ -7,16 +7,44 @@ class Option extends React.Component {
     }
 
     render() {
+
         return(
             <option key={this.props.i} value={this.props.i} data-hex={this.props.colorHex}>
                 {this.props.colorName}
             </option>
         )
     }
+
 }
 //*****************************************
 
 class ColorSelect extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+        }
+    }
+
+    render() {
+
+        let colorOptions = this.props.colorsArr.map( (item, i) => {
+            return(
+                <Option key={i} value={i} data-hex={item.hex} colorName={item.name} />
+            )
+        });
+
+        return (
+            <datalist id="colorSelectable">
+                {colorOptions}
+            </datalist>
+        )
+    }
+
+}
+//***********************************
+
+class Field extends React.Component {
     constructor(props) {
         super(props);
 
@@ -28,16 +56,23 @@ class ColorSelect extends React.Component {
 
     render() {
 
-        let colorOptions = this.state.colorsArr.map( (item, i) => {
-            return(
-                <Option key={i} value={i} data-hex={item.hex} colorName={item.name} />
-            )
-        });
+        return(
+            <div>
+                <label htmlFor='inputWithColors'>Select color:</label>
+                <input list="colorSelectable" name="inputWithColors" id="inputWithColors" />
+                <ColorSelect colorsArr={this.state.colorsArr} />
+                <input type='button' onClick={this.setBackground} value='Accept' />
 
-        return <datalist id="colorSelectable">
-            {colorOptions}
-        </datalist>
+                <div style={{
+                    backgroundColor: this.state.currentColor,
+                    border: '1rem solid burlywood',
+                    height: '160px',
+                    width: '160px'
+                    }}>
+                </div>
 
+            </div>
+        )
     }
 
     getColorsJson() {
@@ -63,39 +98,6 @@ class ColorSelect extends React.Component {
 
     componentDidMount() {
         this.getColorsJson()
-    }
-}
-//***********************************
-
-class Field extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            colorsArr : [],
-            currentColor : 'chartreuse'
-        }
-    }
-
-    render() {
-
-        return(
-            <div>
-                <label htmlFor='inputWithColors'>Select color:</label>
-                <input list="colorSelectable" name="inputWithColors" id="inputWithColors" />
-                <ColorSelect />
-                <input type='button' onClick={this.setBackground} value='Accept' />
-
-                <div style={{
-                    backgroundColor: this.state.currentColor,
-                    border: '1rem solid burlywood',
-                    height: '160px',
-                    width: '160px'
-                    }}>
-                </div>
-
-            </div>
-        )
     }
 
     setBackground = e => {
