@@ -1,29 +1,28 @@
 import React from 'react';
 
 class Option extends React.Component {
-
     constructor(props) {
         super(props);
 
     }
+
     render() {
-
-        let option = <option key={this.props.i} value={this.props.i} data-hex={this.props.colorHex}>
-            {this.props.colorName}
-        </option>;
-
-        return option;
+        return(
+            <option key={this.props.i} value={this.props.i} data-hex={this.props.colorHex}>
+                {this.props.colorName}
+            </option>
+        )
     }
-
-
 }
-class Field extends React.Component {
+//***********************************
 
+class Field extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            colorsArr: []
+            colorsArr : [],
+            currentColor : '#deb887'
         }
     }
 
@@ -49,36 +48,50 @@ class Field extends React.Component {
     }
 
     render() {
-
-        let options = this.state.colorsArr.map( (item, i) => {
-            return (
+        let colorOptions = this.state.colorsArr.map( (item, i) => {
+            return(
                 <Option key={i} value={i} data-hex={item.hex} colorName={item.name} />
             )
         });
 
-        let select = (
-            <select name="colorSelectable" id="colorSelectable">
-                {options}
-            </select>
+        let colorSelect = (
+            <datalist id="colorSelectable">
+                {colorOptions}
+            </datalist>
         );
 
-        return <div>
+        let colorButton = <input type='button' onClick={this.setBackground} value='Accept' />;
 
-            <label htmlFor="colorSelectable">Select color:</label>
+        return(
+            <div>
+                <label htmlFor='inputWithColors'>Select color:</label>
+                <input list="colorSelectable" name="inputWithColors" id="inputWithColors" />
+                {colorSelect}
+                {colorButton}
 
-            {select}
-
-            <div style={{
-                border: '1rem solid burlywood',
-                backgroundSize: '500%',
-                height: '160px',
-                width: '160px',
-                backgroundPositionX: '0px',
-                backgroundPositionY: '0px',
-            }}>
+                <div style={{
+                    border: '1rem solid burlywood',
+                    backgroundSize: '500%',
+                    height: '160px',
+                    width: '160px',
+                    backgroundPositionX: '0px',
+                    backgroundPositionY: '0px',
+                    }}>
+                </div>
             </div>
+        )
+    }
 
-        </div>;
+    setBackground(e){
+        e.preventDefault();
+
+        let newColor = document.getElementById("inputWithColors").value;
+        this.state.colorsArr.forEach( item => {
+            item.name === newColor ? this.setState({
+                currentColor : item.hex
+            }) : false ;
+        });
+
     }
 
     componentDidMount() {
@@ -86,4 +99,5 @@ class Field extends React.Component {
     }
 
 }
+
 export {Field}
