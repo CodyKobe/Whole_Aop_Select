@@ -9,13 +9,13 @@
 ```npm start```  
   
   
-General styles file:  
-```src/sass/_base.scss```  
-  
-  
 General jsx:  
 ```src/js/components/app.jsx```  
 ```src/js/components/field.jsx```    
+  
+  
+General styles file:  
+```src/sass/_base.scss```  
   
   
 ---  
