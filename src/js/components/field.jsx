@@ -14,6 +14,7 @@ class Option extends React.Component {
         )
     }
 }
+
 //***********************************
 
 class Field extends React.Component {
@@ -22,7 +23,7 @@ class Field extends React.Component {
 
         this.state = {
             colorsArr : [],
-            currentColor : '#deb887'
+            currentColor : 'chartreuse'
         }
     }
 
@@ -70,6 +71,7 @@ class Field extends React.Component {
                 {colorButton}
 
                 <div style={{
+                    backgroundColor: this.state.currentColor,
                     border: '1rem solid burlywood',
                     backgroundSize: '500%',
                     height: '160px',
@@ -82,17 +84,18 @@ class Field extends React.Component {
         )
     }
 
-    setBackground(e){
+    setBackground = (e) => {
         e.preventDefault();
 
         let newColor = document.getElementById("inputWithColors").value;
         this.state.colorsArr.forEach( item => {
-            item.name === newColor ? this.setState({
-                currentColor : item.hex
-            }) : false ;
-        });
-
-    }
+            if( item.name === newColor ) {
+                this.setState({
+                    currentColor : '#'+item.hex
+                })
+            }
+        })
+    };
 
     componentDidMount() {
         this.getColorsJson()
