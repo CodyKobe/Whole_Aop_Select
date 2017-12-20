@@ -6,13 +6,11 @@ class ColorSelect extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-        }
     }
 
     render() {
 
-        let colorOptions = this.props.colorsArr.map( (item, i) => {
+        let colorOptions = this.props.colorsSubArr.map( (item, i) => {
             return(
                 <Option key={i} value={i} data-hex={item.hex} colorName={item.name} />
             )

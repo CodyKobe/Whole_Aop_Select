@@ -17,7 +17,7 @@ class App extends React.Component {
     }
 
     // This method will be sent to the child component
-    handler = (colorFromChild) => {
+    handler = colorFromChild => {
         this.setState({
             background : this.hexToRGB(colorFromChild)
         })
@@ -28,7 +28,8 @@ class App extends React.Component {
             <div className="global"
                  style={{backgroundColor: this.state.background}} >
                 <Header />
-                {/*Render the child component and set the action property with the handler as value*/}
+                {/*Render the child component and set
+                the action property with the handler as value*/}
                 <Field backgroundAction={this.handler} />
                 <Footer />
             </div>
